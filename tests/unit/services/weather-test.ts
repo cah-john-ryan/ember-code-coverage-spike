@@ -1,8 +1,10 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-code-coverage-spike/tests/helpers';
+import { setupMirage } from 'ember-cli-mirage/test-support';
 
 module('Unit | Service | weather', function (hooks) {
   setupTest(hooks);
+  setupMirage(hooks);
 
   test('it exists', function (assert) {
     const service = this.owner.lookup('service:weather');
