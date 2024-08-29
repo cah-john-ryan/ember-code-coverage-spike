@@ -5,12 +5,13 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 module.exports = function (defaults) {
   const app = new EmberApp(defaults, {
     babel: {
-      plugins: [...require('ember-cli-code-coverage').buildBabelPlugin()],
+      plugins: [...require('ember-cli-code-coverage').buildBabelPlugin({ embroider: true })],
     },
     'ember-cli-babel': { enableTypeScriptTransform: true },
 
     // Add options here
   });
 
-  return app.toTree();
+  const { Webpack } = require('@embroider/webpack');
+  return require('@embroider/compat').compatBuild(app, Webpack);
 };
