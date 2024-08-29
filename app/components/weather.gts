@@ -20,14 +20,20 @@ export interface WeatherSignature {
 
 export default class Weather extends Component<WeatherSignature> {
   <template>
-    <div>
+    <div data-test-weather>
       <h2>Weather</h2>
-      <button type="button" {{on "click" this.getCurrentForecast}}>Get current forecast</button>
+      <button
+        type="button"
+        {{on "click" this.getCurrentForecast}}
+        data-test-weather-button
+      >
+        Get current forecast
+      </button>
       {{#if this.timeOfForecast}}
         <div>{{this.timeOfForecast}}</div>
       {{/if}}
       {{#if this.currentForecast}}
-        <p>{{this.currentForecast}}</p>
+        <p data-test-weather-current-forecast>{{this.currentForecast}}</p>
       {{/if}}
     </div>
   </template>
