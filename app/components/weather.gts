@@ -4,6 +4,9 @@ import { tracked } from '@glimmer/tracking';
 import type WeatherService from 'ember-code-coverage-spike/services/weather';
 import { action } from "@ember/object";
 
+// Template imports
+import { on } from "@ember/modifier";
+
 export interface WeatherSignature {
   // The arguments accepted by the component
   Args: {};
@@ -16,6 +19,19 @@ export interface WeatherSignature {
 }
 
 export default class Weather extends Component<WeatherSignature> {
+  <template>
+    <div>
+      <h2>Weather</h2>
+      <button type="button" {{on "click" this.getCurrentForecast}}>Get current forecast</button>
+      {{#if this.timeOfForecast}}
+        <div>{{this.timeOfForecast}}</div>
+      {{/if}}
+      {{#if this.currentForecast}}
+        <p>{{this.currentForecast}}</p>
+      {{/if}}
+    </div>
+  </template>
+
   @service('weather')
   weatherService: WeatherService;
 

@@ -1,16 +1,14 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-code-coverage-spike/tests/helpers';
 import { render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
+
+import Weather from "ember-code-coverage-spike/components/weather";
 
 module('Integration | Component | weather', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
-
-    await render(hbs`<Weather />`);
+    await render(<template><Weather /></template>);
 
     assert.dom().hasText('Weather Get current forecast');
   });
