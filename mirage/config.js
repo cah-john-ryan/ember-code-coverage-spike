@@ -42,16 +42,31 @@ function routes() {
     https://miragejs.com/docs/getting-started/overview/
   */
 
-    /*
+  /*
      I realize that this normally would this this applications own backend but
      I am using api.weather.gov to save on any further setup
     */
-    this.urlPrefix = 'https://api.weather.gov';
+  this.urlPrefix = 'https://api.weather.gov';
 
-    this.get('/points/:location', (schema, request) => {
-      let location = request.params.location;
-      return {
-        id: `${this.urlPrefix}/points/${location}`
-      }
-    });
+  this.get('/points/:location', (schema, request) => {
+    let location = request.params.location;
+    return {
+      id: `${this.urlPrefix}/points/${location}`,
+      properties: {
+        forecast: `${this.urlPrefix}/gridpoints/fakeGridLocation/forecast`,
+      },
+    };
+  });
+
+  this.get('/gridpoints/:gridLocation/forecast', () => {
+    return {
+      properties: {
+        periods: [
+          {
+            detailedForecast: "It's gonna be cold, it's gonna be grey, and it's gonna last you for the rest of your life."
+          },
+        ],
+      },
+    };
+  });
 }
