@@ -6,6 +6,7 @@ module.exports = function (defaults) {
   const app = new EmberApp(defaults, {
     babel: {
       plugins: [
+        require.resolve("ember-concurrency/async-arrow-task-transform"),
         ...require('ember-cli-code-coverage').buildBabelPlugin({
           embroider: true,
         }),
